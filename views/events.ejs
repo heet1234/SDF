@@ -1,0 +1,68 @@
+<%- include("partials/header") %>
+
+<div class="page-heading">
+	<div class="container">
+		<div class="heading-content">
+			<h1>Events <em>Page</em></h1>
+		</div>
+	</div>
+</div>
+
+<button id="modBtn" class = "btn btn-outline-primary" style="margin: 2% 45%;">
+		 Add new Event
+</button>
+	<section>
+        <div class="container py-5">
+			<% events.forEach( (event) => { %>
+            <div class="row bg-white shadow no-gutters mt-5">
+				<div class="col-md-4 col-12">
+                    <img class="img-fluid" src="<%= `${event.image}` %>" style="height: 270px; width: 100%;">
+                </div>
+                <div class="col-md-8 col-12 px-4 py-2">
+                    <h2><%= `${event.name}` %></h2>
+                    <p class="text-justify pt-2"><%= `${event.description}` %></p>
+                    <a href="/ngo/events/<%= `${event._id}` %>" class="btn blue-btn">Know More</a>
+                </div>
+            </div>
+			<% }) %>
+		</div>
+	</section>
+
+<div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="header-title">Add New Event <em></em></h3>
+          <div class="close-btn"><img src="/img/close_contact.png" alt=""></div>    
+        </div>
+        <div class="modal-body">
+          <div class="col-md-6 col-md-offset-3">
+            <form id="contact" action = "/ngo/events" method = "POST">
+                <div class="row">
+                    <div class="col-md-12">
+                      <fieldset>
+                        <input name = "name" type="text" class="form-control" id="name" placeholder="Event name..." required>
+                      </fieldset>
+                    </div>
+					<div class="col-md-12">
+                      <fieldset>
+                        <input name = "image" type="text" class="form-control" id="image" placeholder="Event name..." required>
+                      </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                      <fieldset>
+                        <textarea name="description" rows="6" class="form-control" id="message" placeholder="About Event..." required></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="btn">Add Event</button>
+                      </fieldset>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%- include("partials/footer") %>
